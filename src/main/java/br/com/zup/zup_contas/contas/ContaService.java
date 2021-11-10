@@ -21,4 +21,12 @@ public class ContaService {
         return conta;
     }
 
+    public Conta salvarConta(Conta conta){
+        conta.setDataCadastro(LocalDate.now());
+        verificarData(conta);
+        contaRepository.save(conta);
+
+        return conta;
+    }
+
 }
