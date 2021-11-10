@@ -5,6 +5,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
+import java.util.List;
 
 @Service
 public class ContaService {
@@ -27,6 +28,12 @@ public class ContaService {
         contaRepository.save(conta);
 
         return conta;
+    }
+
+    public List<Conta> exibirContasSalvas(){
+        List<Conta> contasSalvas = (List<Conta>) contaRepository.findAll();
+
+        return contasSalvas;
     }
 
 }
