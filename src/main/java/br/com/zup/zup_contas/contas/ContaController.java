@@ -1,5 +1,6 @@
 package br.com.zup.zup_contas.contas;
 
+import br.com.zup.zup_contas.contas.dtos.AtualizarContaDTO;
 import br.com.zup.zup_contas.contas.dtos.CadastroContaDTO;
 import br.com.zup.zup_contas.contas.dtos.ExibirContaDTO;
 import br.com.zup.zup_contas.contas.dtos.SaidaContaDTO;
@@ -40,6 +41,13 @@ public class ContaController {
         }
 
         return listaContas;
+    }
+
+    @PutMapping("/{id}")
+    public SaidaContaDTO atualizarPagamento(@PathVariable int id, @RequestBody AtualizarContaDTO atualizarConta){
+        Conta contaAtualizada = contaService.atulizarStatusConta(id);
+
+        return modelMapper.map(contaAtualizada, SaidaContaDTO.class);
     }
 
 }
