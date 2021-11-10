@@ -43,4 +43,10 @@ public class ContaService {
         return contaId.get();
     }
 
+    public Conta atulizarStatusConta(Conta conta){
+        Optional<Conta> contaAtualizar = buscarContaId(conta.getId());
+
+
+    }
+
 }
