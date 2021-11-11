@@ -2,6 +2,7 @@ package br.com.zup.zup_contas.contas.dtos;
 
 import br.com.zup.zup_contas.contas.enuns.Status;
 import br.com.zup.zup_contas.contas.enuns.Tipo;
+import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -19,6 +20,7 @@ public class SaidaContaDTO {
     private double valor;
     private Tipo tipo;
     private LocalDate dataDeVencimento;
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     private LocalDateTime dataDePagamento;
     private Status status;
 
