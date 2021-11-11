@@ -4,6 +4,7 @@ import br.com.zup.zup_contas.contas.exceptions.ContaNaoEncontrada;
 import br.com.zup.zup_contas.contas.exceptions.NaoExisteCadastro;
 import br.com.zup.zup_contas.contas.exceptions.StatusPagamentoIncorreto;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.converter.HttpMessageNotReadableException;
 import org.springframework.validation.FieldError;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
@@ -47,6 +48,12 @@ public class ControllerAdvisor {
     @ResponseStatus(HttpStatus.BAD_REQUEST)
     public MensagemErroExcecao manipularStatusPagamentoIncorreto(StatusPagamentoIncorreto exception) {
         return new MensagemErroExcecao(exception.getMessage());
+    }
+
+    @ExceptionHandler(HttpMessageNotReadableException.class)
+    @ResponseStatus(HttpStatus.BAD_REQUEST)
+    public MensagemErroExcecao manipularErrosJson(HttpMessageNotReadableException exception){
+        return new MensagemErroExcecao("Algum dos dados está preenchido incorretamente!");
     }
 
 }
