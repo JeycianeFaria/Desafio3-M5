@@ -23,6 +23,7 @@ public class CadastroContaDTO {
     private double valor;
     @NotNull (message = "Tipo é obrigatório")
     private Tipo tipo;
+    @NotNull(message = "A data de vencimento é obrigatório")
     private LocalDate dataDeVencimento;
 
 }
