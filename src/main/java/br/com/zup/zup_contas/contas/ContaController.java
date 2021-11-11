@@ -1,9 +1,6 @@
 package br.com.zup.zup_contas.contas;
 
-import br.com.zup.zup_contas.contas.dtos.AtualizarContaDTO;
-import br.com.zup.zup_contas.contas.dtos.CadastroContaDTO;
-import br.com.zup.zup_contas.contas.dtos.ExibirContaDTO;
-import br.com.zup.zup_contas.contas.dtos.SaidaContaDTO;
+import br.com.zup.zup_contas.contas.dtos.*;
 import br.com.zup.zup_contas.contas.enuns.Status;
 import br.com.zup.zup_contas.contas.exceptions.StatusPagamentoIncorreto;
 import org.modelmapper.ModelMapper;
@@ -43,6 +40,11 @@ public class ContaController {
         }
 
         return listaContas;
+    }
+
+    @GetMapping("/{id}")
+    public ExibirContaDetalhadaDTO buscarContaID(@PathVariable int id){
+        return modelMapper.map(contaService.buscarContaId(id),ExibirContaDetalhadaDTO.class);
     }
 
     @PutMapping("/{id}")
