@@ -57,6 +57,7 @@ public class ContaService {
         Conta contaAtualizar = buscarContaId(id);
         contaAtualizar.setStatus(Status.PAGO);
         contaAtualizar.setDataDePagamento(LocalDateTime.now());
+        contaRepository.save(contaAtualizar);
 
         return contaAtualizar;
     }
