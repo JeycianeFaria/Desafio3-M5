@@ -17,13 +17,12 @@ public class ContaService {
     @Autowired
     private ContaRepository contaRepository;
 
-    public Conta verificarData(Conta conta) {
+    public void verificarData(Conta conta) {
         if (conta.getDataDeVencimento().isBefore(conta.getDataCadastro())) {
             conta.setStatus(Status.VENCIDA);
+            return;
         }
         conta.setStatus(Status.AGUARDANDO);
-
-        return conta;
     }
 
     public Conta salvarConta(Conta conta) {
