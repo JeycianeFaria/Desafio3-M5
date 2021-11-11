@@ -1,6 +1,7 @@
 package br.com.zup.zup_contas.contas;
 
 import br.com.zup.zup_contas.contas.enuns.Status;
+import br.com.zup.zup_contas.contas.exceptions.ContaNaoEncontrada;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -42,6 +43,10 @@ public class ContaService {
 
     public Conta buscarContaId(int id) {
         Optional<Conta> contaId = contaRepository.findById(id);
+
+        if (contaId.isEmpty()){
+            throw new ContaNaoEncontrada("Conta não encontrada");
+        }
 
         return contaId.get();
     }
