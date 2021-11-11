@@ -4,6 +4,8 @@ import br.com.zup.zup_contas.contas.dtos.AtualizarContaDTO;
 import br.com.zup.zup_contas.contas.dtos.CadastroContaDTO;
 import br.com.zup.zup_contas.contas.dtos.ExibirContaDTO;
 import br.com.zup.zup_contas.contas.dtos.SaidaContaDTO;
+import br.com.zup.zup_contas.contas.enuns.Status;
+import br.com.zup.zup_contas.contas.exceptions.StatusPagamentoIncorreto;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -47,7 +49,11 @@ public class ContaController {
     public SaidaContaDTO atualizarPagamento(@PathVariable int id, @RequestBody AtualizarContaDTO atualizarConta){
         Conta contaAtualizada = contaService.atualizarStatusConta(id);
 
-        return modelMapper.map(contaAtualizada, SaidaContaDTO.class);
+        if (atualizarConta.getStatus() == Status.PAGO){
+            return modelMapper.map(contaAtualizada, SaidaContaDTO.class);
+        }
+
+        throw new StatusPagamentoIncorreto("Status para pagamento inválido!");
     }
 
 }
