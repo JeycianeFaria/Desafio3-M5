@@ -45,7 +45,7 @@ public class ContaController {
 
     @PutMapping("/{id}")
     public SaidaContaDTO atualizarPagamento(@PathVariable int id, @RequestBody AtualizarContaDTO atualizarConta){
-        Conta contaAtualizada = contaService.atulizarStatusConta(id);
+        Conta contaAtualizada = contaService.atualizarStatusConta(id);
 
         return modelMapper.map(contaAtualizada, SaidaContaDTO.class);
     }
