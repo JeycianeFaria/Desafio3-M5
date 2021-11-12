@@ -11,8 +11,10 @@ import lombok.Setter;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 
-@NoArgsConstructor @AllArgsConstructor
-@Getter @Setter
+@NoArgsConstructor
+@AllArgsConstructor
+@Getter
+@Setter
 public class SaidaContaDTO {
 
     private int id;

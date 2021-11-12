@@ -24,10 +24,13 @@ public class ContaService {
             conta.setStatus(Status.VENCIDA);
             return;
         }
+
         conta.setStatus(Status.AGUARDANDO);
+
     }
 
     public Conta salvarConta(Conta conta) {
+
         conta.setDataCadastro(LocalDate.now());
         verificarData(conta);
         contaRepository.save(conta);
@@ -38,14 +41,13 @@ public class ContaService {
     public List<Conta> exibirContasSalvas(Map<String, String> filtros) {
         List<Conta> contasSalvas = (List<Conta>) contaRepository.findAll();
 
-
         if (filtros.get("status") != null) {
             return contaRepository.findAllByStatus(Status.valueOf(filtros.get("status")));
-        }else if (filtros.get("tipo") != null) {
+        } else if (filtros.get("tipo") != null) {
             return contaRepository.findAllByTipo(Tipo.valueOf(filtros.get("tipo")));
-        }else if (filtros.get("valor") != null) {
+        } else if (filtros.get("valor") != null) {
             return contaRepository.findAllByValor(Double.parseDouble(filtros.get("valor")));
-        }else if(contasSalvas.isEmpty()) {
+        } else if (contasSalvas.isEmpty()) {
             throw new NaoExisteCadastro("Nenhuma conta cadastrada!");
         }
 
@@ -64,6 +66,7 @@ public class ContaService {
 
     public Conta atualizarStatusConta(int id) {
         Conta contaAtualizar = buscarContaId(id);
+
         contaAtualizar.setStatus(Status.PAGO);
         contaAtualizar.setDataDePagamento(LocalDateTime.now());
         contaRepository.save(contaAtualizar);
@@ -72,6 +75,7 @@ public class ContaService {
     }
 
     public void excluirConta(int id) {
+
         if (contaRepository.existsById(id)) {
             contaRepository.deleteById(id);
             return;

@@ -8,12 +8,13 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import javax.persistence.*;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 
-@NoArgsConstructor @AllArgsConstructor
-@Getter @Setter
+@NoArgsConstructor
+@AllArgsConstructor
+@Getter
+@Setter
 public class ExibirContaDetalhadaDTO {
 
     private int id;

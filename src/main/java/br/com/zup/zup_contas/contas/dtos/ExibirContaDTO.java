@@ -6,8 +6,10 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-@NoArgsConstructor @AllArgsConstructor
-@Getter @Setter
+@NoArgsConstructor
+@AllArgsConstructor
+@Getter
+@Setter
 public class ExibirContaDTO {
 
     private int id;

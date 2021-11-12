@@ -29,7 +29,6 @@ public class ControllerAdvisor {
         }
 
         return erros;
-
     }
 
     @ExceptionHandler(ContaNaoEncontrada.class)
@@ -52,7 +51,7 @@ public class ControllerAdvisor {
 
     @ExceptionHandler(HttpMessageNotReadableException.class)
     @ResponseStatus(HttpStatus.BAD_REQUEST)
-    public MensagemErroExcecao manipularErrosJson(HttpMessageNotReadableException exception){
+    public MensagemErroExcecao manipularErrosJson(HttpMessageNotReadableException exception) {
         return new MensagemErroExcecao("Algum dos dados está preenchido incorretamente!");
     }
 
