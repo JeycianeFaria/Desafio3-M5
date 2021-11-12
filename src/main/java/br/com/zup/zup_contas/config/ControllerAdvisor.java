@@ -57,7 +57,7 @@ public class ControllerAdvisor {
 
     @ExceptionHandler(IllegalArgumentException.class)
     @ResponseStatus(HttpStatus.BAD_REQUEST)
-    public MensagemErroExcecao manipularErroUrlFiltro(IllegalArgumentException exception){
+    public MensagemErroExcecao manipularErroUrlFiltro(IllegalArgumentException exception) {
         return new MensagemErroExcecao("Filtro incorreto.");
     }
 

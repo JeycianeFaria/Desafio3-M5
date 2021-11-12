@@ -56,10 +56,10 @@ public class ContaService {
         } else if (filtros.get("status") != null && filtros.get("tipo") != null) {
             return contaRepository.statusTipo(filtros.get("status"), filtros.get("tipo"));
 
-        } else if (filtros.get("tipo") != null && (filtros.get("valor") != null)){
+        } else if (filtros.get("tipo") != null && (filtros.get("valor") != null)) {
             return contaRepository.tipoValor(filtros.get("tipo"), Double.parseDouble(filtros.get("valor")));
 
-        }else if (filtros.get("status") != null && (filtros.get("valor") != null)){
+        } else if (filtros.get("status") != null && (filtros.get("valor") != null)) {
             return contaRepository.statusValor(filtros.get("status"), Double.parseDouble(filtros.get("valor")));
 
         } else if (filtros.get("status") != null) {
