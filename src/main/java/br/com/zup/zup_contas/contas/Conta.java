@@ -25,7 +25,7 @@ public class Conta {
     @Column(nullable = false)
     private String nome;
     @Setter
-    @Column(nullable = false)
+    @Column(nullable = false, precision=10, scale=3)
     private double valor;
     @Setter
     @Column(nullable = false)

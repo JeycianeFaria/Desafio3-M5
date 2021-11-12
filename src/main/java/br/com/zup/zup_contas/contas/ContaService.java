@@ -41,17 +41,39 @@ public class ContaService {
     public List<Conta> exibirContasSalvas(Map<String, String> filtros) {
         List<Conta> contasSalvas = (List<Conta>) contaRepository.findAll();
 
-        if (filtros.get("status") != null) {
-            return contaRepository.findAllByStatus(Status.valueOf(filtros.get("status")));
-        } else if (filtros.get("tipo") != null) {
-            return contaRepository.findAllByTipo(Tipo.valueOf(filtros.get("tipo")));
-        } else if (filtros.get("valor") != null) {
-            return contaRepository.findAllByValor(Double.parseDouble(filtros.get("valor")));
-        } else if (contasSalvas.isEmpty()) {
+        if (contasSalvas.isEmpty()) {
             throw new NaoExisteCadastro("Nenhuma conta cadastrada!");
         }
 
-        return contasSalvas;
+        return retornarBusca(contasSalvas, filtros);
+    }
+
+    public List<Conta> retornarBusca(List<Conta> contaSalvas, Map<String, String> filtros) {
+
+        if (filtros.get("status") != null && filtros.get("tipo") != null && (filtros.get("valor") != null)) {
+            return contaRepository.todosFiltros(filtros.get("status"), filtros.get("tipo"), Double.parseDouble(filtros.get("valor")));
+
+        } else if (filtros.get("status") != null && filtros.get("tipo") != null) {
+            return contaRepository.statusTipo(filtros.get("status"), filtros.get("tipo"));
+
+        } else if (filtros.get("tipo") != null && (filtros.get("valor") != null)){
+            return contaRepository.tipoValor(filtros.get("tipo"), Double.parseDouble(filtros.get("valor")));
+
+        }else if (filtros.get("status") != null && (filtros.get("valor") != null)){
+            return contaRepository.statusValor(filtros.get("status"), Double.parseDouble(filtros.get("valor")));
+
+        } else if (filtros.get("status") != null) {
+            return contaRepository.status(filtros.get("status"));
+
+        } else if (filtros.get("tipo") != null) {
+            return contaRepository.tipo(filtros.get("tipo"));
+
+        } else if (filtros.get("valor") != null) {
+            return contaRepository.valor(Double.parseDouble(filtros.get("valor")));
+
+        }
+
+        return contaSalvas;
     }
 
     public Conta buscarContaId(int id) {
