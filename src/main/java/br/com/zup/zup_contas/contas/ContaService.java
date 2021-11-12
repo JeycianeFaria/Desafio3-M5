@@ -50,6 +50,7 @@ public class ContaService {
 
     public List<Conta> retornarBusca(List<Conta> contaSalvas, Map<String, String> filtros) {
 
+        //estrutura condicional para verificar filtros
         if (filtros.get("status") != null && filtros.get("tipo") != null && (filtros.get("valor") != null)) {
             return contaRepository.todosFiltros(filtros.get("status"), filtros.get("tipo"), Double.parseDouble(filtros.get("valor")));
 

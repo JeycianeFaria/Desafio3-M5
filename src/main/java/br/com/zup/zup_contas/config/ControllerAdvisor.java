@@ -55,10 +55,4 @@ public class ControllerAdvisor {
         return new MensagemErroExcecao("Algum dos dados está preenchido incorretamente!");
     }
 
-    @ExceptionHandler(IllegalArgumentException.class)
-    @ResponseStatus(HttpStatus.BAD_REQUEST)
-    public MensagemErroExcecao manipularErroUrlFiltro(IllegalArgumentException exception) {
-        return new MensagemErroExcecao("Filtro incorreto.");
-    }
-
 }
