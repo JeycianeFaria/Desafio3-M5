@@ -52,7 +52,8 @@ public class ContaService {
 
         //estrutura condicional para verificar filtros
         if (filtros.get("status") != null && filtros.get("tipo") != null && (filtros.get("valor") != null)) {
-            return contaRepository.todosFiltros(filtros.get("status"), filtros.get("tipo"), Double.parseDouble(filtros.get("valor")));
+            return contaRepository.todosFiltros(filtros.get("status"), filtros.get("tipo"),
+                    Double.parseDouble(filtros.get("valor")));
 
         } else if (filtros.get("status") != null && filtros.get("tipo") != null) {
             return contaRepository.statusTipo(filtros.get("status"), filtros.get("tipo"));
