@@ -1,7 +1,6 @@
 package br.com.zup.zup_contas.contas;
 
 import br.com.zup.zup_contas.contas.enuns.Status;
-import br.com.zup.zup_contas.contas.enuns.Tipo;
 import br.com.zup.zup_contas.contas.exceptions.ContaNaoEncontrada;
 import br.com.zup.zup_contas.contas.exceptions.NaoExisteCadastro;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -52,7 +51,8 @@ public class ContaService {
 
         //estrutura condicional para verificar filtros
         if (filtros.get("status") != null && filtros.get("tipo") != null && (filtros.get("valor") != null)) {
-            return contaRepository.todosFiltros(filtros.get("status"), filtros.get("tipo"), Double.parseDouble(filtros.get("valor")));
+            return contaRepository.todosFiltros(filtros.get("status"), filtros.get("tipo"),
+                    Double.parseDouble(filtros.get("valor")));
 
         } else if (filtros.get("status") != null && filtros.get("tipo") != null) {
             return contaRepository.statusTipo(filtros.get("status"), filtros.get("tipo"));

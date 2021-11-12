@@ -19,16 +19,19 @@ public interface ContaRepository extends CrudRepository<Conta, Integer> {
     @Query(value = "SELECT * FROM gerenciador_contas WHERE VALOR BETWEEN :valor-10 AND :valor+10", nativeQuery = true)
     List<Conta> valor(Double valor);
 
-    @Query(value = "SELECT * FROM gerenciador_contas WHERE status = :status AND tipo = :tipo AND valor BETWEEN :valor-10 AND :valor+10", nativeQuery = true)
+    @Query(value = "SELECT * FROM gerenciador_contas WHERE status = :status AND tipo = :tipo " +
+            "AND valor BETWEEN :valor-10 AND :valor+10", nativeQuery = true)
     List<Conta> todosFiltros(String status, String tipo, Double valor);
 
     @Query(value = "SELECT * FROM gerenciador_contas WHERE status = :status AND tipo = :tipo", nativeQuery = true)
     List<Conta> statusTipo(String status, String tipo);
 
-    @Query(value = "SELECT * FROM gerenciador_contas WHERE status = :status AND valor BETWEEN :valor-10 AND :valor+10", nativeQuery = true)
+    @Query(value = "SELECT * FROM gerenciador_contas WHERE status = :status AND valor BETWEEN :valor-10 AND :valor+10",
+            nativeQuery = true)
     List<Conta> statusValor(String status, Double valor);
 
-    @Query(value = "SELECT * FROM gerenciador_contas WHERE  tipo = :tipo AND valor BETWEEN :valor-10 AND :valor+10", nativeQuery = true)
+    @Query(value = "SELECT * FROM gerenciador_contas WHERE  tipo = :tipo AND valor BETWEEN :valor-10 AND :valor+10",
+            nativeQuery = true)
     List<Conta> tipoValor(String tipo, Double valor);
 
 
