@@ -6,6 +6,7 @@ import br.com.zup.zup_contas.contas.exceptions.ContaNaoEncontrada;
 import br.com.zup.zup_contas.contas.exceptions.NaoExisteCadastro;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
