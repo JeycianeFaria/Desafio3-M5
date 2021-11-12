@@ -2,6 +2,7 @@ package br.com.zup.zup_contas.contas;
 
 import br.com.zup.zup_contas.contas.dtos.*;
 import br.com.zup.zup_contas.contas.enuns.Status;
+import br.com.zup.zup_contas.contas.enuns.Tipo;
 import br.com.zup.zup_contas.contas.exceptions.StatusPagamentoIncorreto;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,6 +12,7 @@ import org.springframework.web.bind.annotation.*;
 import javax.validation.Valid;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 @RestController
 @RequestMapping("/contas")
@@ -57,6 +59,12 @@ public class ContaController {
         }
 
         throw new StatusPagamentoIncorreto("Status para pagamento inválido!");
+    }
+
+    @DeleteMapping("/{id}")
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    public void deletarConta(@PathVariable int id){
+        contaService.excluirConta(id);
     }
 
 }

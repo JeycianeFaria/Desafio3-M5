@@ -61,4 +61,12 @@ public class ContaService {
         return contaAtualizar;
     }
 
+    public void excluirConta(int id){
+        if (contaRepository.existsById(id)){
+            contaRepository.deleteById(id);
+        }
+
+        throw new ContaNaoEncontrada("Conta não encontrada");
+    }
+
 }
