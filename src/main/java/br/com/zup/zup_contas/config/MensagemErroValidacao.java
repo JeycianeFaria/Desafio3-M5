@@ -10,6 +10,5 @@ import lombok.Setter;
 public class MensagemErroValidacao {
 
     private String nome;
-    private String campo;
 
 }

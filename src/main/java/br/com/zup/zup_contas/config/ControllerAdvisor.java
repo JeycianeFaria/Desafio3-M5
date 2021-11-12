@@ -23,8 +23,7 @@ public class ControllerAdvisor {
         List<MensagemErroValidacao> erros = new ArrayList<>();
 
         for (FieldError referencia : exception.getFieldErrors()) {
-            MensagemErroValidacao erroValidacao = new MensagemErroValidacao(referencia.getField(),
-                    referencia.getDefaultMessage());
+            MensagemErroValidacao erroValidacao = new MensagemErroValidacao(referencia.getDefaultMessage());
             erros.add(erroValidacao);
         }
 
@@ -52,7 +51,7 @@ public class ControllerAdvisor {
     @ExceptionHandler(HttpMessageNotReadableException.class)
     @ResponseStatus(HttpStatus.BAD_REQUEST)
     public MensagemErroExcecao manipularErrosJson(HttpMessageNotReadableException exception) {
-        return new MensagemErroExcecao("Algum dos dados está preenchido incorretamente!");
+        return new MensagemErroExcecao("Algum dos dados está preenchido incorretamente,verifique!");
     }
 
 }
