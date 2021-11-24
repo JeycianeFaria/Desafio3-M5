@@ -3,6 +3,8 @@ package br.com.zup.zup_contas.contas;
 import br.com.zup.zup_contas.contas.enuns.Status;
 import br.com.zup.zup_contas.contas.exceptions.ContaNaoEncontrada;
 import br.com.zup.zup_contas.contas.exceptions.NaoExisteCadastro;
+import br.com.zup.zup_contas.contas.repository.QuerysCustomizadaRepository;
+import br.com.zup.zup_contas.contas.repository.ContaRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -17,6 +19,8 @@ public class ContaService {
 
     @Autowired
     private ContaRepository contaRepository;
+    @Autowired
+    private QuerysCustomizadaRepository contaCustomizadaRepository;
 
     public void verificarData(Conta conta) {
         if (conta.getDataDeVencimento().isBefore(conta.getDataCadastro())) {
@@ -50,28 +54,9 @@ public class ContaService {
     public List<Conta> retornarBusca(List<Conta> contaSalvas, Map<String, String> filtros) {
 
         //estrutura condicional para verificar filtros
-        if (filtros.get("status") != null && filtros.get("tipo") != null && (filtros.get("valor") != null)) {
-            return contaRepository.todosFiltros(filtros.get("status"), filtros.get("tipo"),
+        if (filtros.get("status") != null || filtros.get("tipo") != null || (filtros.get("valor") != null)) {
+            return contaCustomizadaRepository.buscar(filtros.get("status"), filtros.get("tipo"),
                     Double.parseDouble(filtros.get("valor")));
-
-        } else if (filtros.get("status") != null && filtros.get("tipo") != null) {
-            return contaRepository.statusTipo(filtros.get("status"), filtros.get("tipo"));
-
-        } else if (filtros.get("tipo") != null && (filtros.get("valor") != null)) {
-            return contaRepository.tipoValor(filtros.get("tipo"), Double.parseDouble(filtros.get("valor")));
-
-        } else if (filtros.get("status") != null && (filtros.get("valor") != null)) {
-            return contaRepository.statusValor(filtros.get("status"), Double.parseDouble(filtros.get("valor")));
-
-        } else if (filtros.get("status") != null) {
-            return contaRepository.status(filtros.get("status"));
-
-        } else if (filtros.get("tipo") != null) {
-            return contaRepository.tipo(filtros.get("tipo"));
-
-        } else if (filtros.get("valor") != null) {
-            return contaRepository.valor(Double.parseDouble(filtros.get("valor")));
-
         }
 
         return contaSalvas;
