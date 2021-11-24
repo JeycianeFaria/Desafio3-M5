@@ -7,11 +7,11 @@ import javax.persistence.EntityManager;
 import java.util.List;
 
 @Repository
-public class QuerysCustomizadaRepository {
+public class ContaCustomizadaRepository {
 
     private final EntityManager entityManager;
 
-    public QuerysCustomizadaRepository(EntityManager entityManager) {
+    public ContaCustomizadaRepository(EntityManager entityManager) {
         this.entityManager = entityManager;
     }
 
@@ -35,7 +35,6 @@ public class QuerysCustomizadaRepository {
         }
 
         var q = entityManager.createNativeQuery(query, Conta.class);
-        //var q = entityManager.createQuery(query, Conta.class).;
 
         if (status != null){
            q.setParameter("status", status);
