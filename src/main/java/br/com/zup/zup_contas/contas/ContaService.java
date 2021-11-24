@@ -3,7 +3,7 @@ package br.com.zup.zup_contas.contas;
 import br.com.zup.zup_contas.contas.enuns.Status;
 import br.com.zup.zup_contas.contas.exceptions.ContaNaoEncontrada;
 import br.com.zup.zup_contas.contas.exceptions.NaoExisteCadastro;
-import br.com.zup.zup_contas.contas.repository.QuerysCustomizadaRepository;
+import br.com.zup.zup_contas.contas.repository.ContaCustomizadaRepository;
 import br.com.zup.zup_contas.contas.repository.ContaRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -20,7 +20,7 @@ public class ContaService {
     @Autowired
     private ContaRepository contaRepository;
     @Autowired
-    private QuerysCustomizadaRepository contaCustomizadaRepository;
+    private ContaCustomizadaRepository contaCustomizadaRepository;
 
     public void verificarData(Conta conta) {
         if (conta.getDataDeVencimento().isBefore(conta.getDataCadastro())) {
@@ -52,11 +52,16 @@ public class ContaService {
     }
 
     public List<Conta> retornarBusca(List<Conta> contaSalvas, Map<String, String> filtros) {
+        Double valorRecebido = null;
+
+        if (filtros.get("valor") != null){
+            valorRecebido = Double.parseDouble(filtros.get("valor"));
+        }
 
         //estrutura condicional para verificar filtros
         if (filtros.get("status") != null || filtros.get("tipo") != null || (filtros.get("valor") != null)) {
             return contaCustomizadaRepository.buscar(filtros.get("status"), filtros.get("tipo"),
-                    Double.parseDouble(filtros.get("valor")));
+                    valorRecebido);
         }
 
         return contaSalvas;
