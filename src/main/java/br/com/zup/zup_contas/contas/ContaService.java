@@ -60,7 +60,7 @@ public class ContaService {
 
         //estrutura condicional para verificar filtros
         if (filtros.get("status") != null || filtros.get("tipo") != null || (filtros.get("valor") != null)) {
-            return contaCustomizadaRepository.buscar(filtros.get("status"), filtros.get("tipo"),
+            return contaCustomizadaRepository.buscarContaPorFiltro(filtros.get("status"), filtros.get("tipo"),
                     valorRecebido);
         }
 

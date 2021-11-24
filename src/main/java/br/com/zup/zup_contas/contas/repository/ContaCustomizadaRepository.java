@@ -15,7 +15,7 @@ public class ContaCustomizadaRepository {
         this.entityManager = entityManager;
     }
 
-    public List<Conta> buscar(String status, String tipo, Double valor){
+    public List<Conta> buscarContaPorFiltro(String status, String tipo, Double valor){
 
         String query = "SELECT * FROM gerenciador_contas";
         String condicao = " WHERE";
