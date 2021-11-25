@@ -52,20 +52,15 @@ public class ContaService {
     }
 
     public List<Conta> retornarBusca(List<Conta> contaSalvas, Map<String, String> filtros) {
-        Double valorRecebido = null;
-
-        if (filtros.get("valor") != null){
-            valorRecebido = Double.parseDouble(filtros.get("valor"));
-        }
 
         //estrutura condicional para verificar filtros
         if (filtros.get("status") != null || filtros.get("tipo") != null || (filtros.get("valor") != null)) {
-            return contaCustomizadaRepository.buscarContaPorFiltro(filtros.get("status"), filtros.get("tipo"),
-                    valorRecebido);
+            return contaCustomizadaRepository.buscarContaPorFiltro(filtros);
         }
 
         return contaSalvas;
     }
+
 
     public Conta buscarContaId(int id) {
         Optional<Conta> contaId = contaRepository.findById(id);
